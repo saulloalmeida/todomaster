@@ -1,32 +1,33 @@
 import classNames from "classnames";
 import { Trash } from "phosphor-react";
 import { useState } from "react";
-interface Task {
-  id: string;
-  name: string;
-  isCompleted: boolean;
-}
+import { Task } from "../interfaces/TaskInterface";
+
 interface TasksProps {
   task: Task;
   handleDeletetask: (id: string) => void;
   handleUpdateTask: (id: string, isCompleted: boolean) => void;
 }
+
 export default function Tasks({
   task,
   handleDeletetask,
   handleUpdateTask,
 }: TasksProps) {
   const [isCompleted, setIsCompleted] = useState<boolean>(task.isCompleted);
+
   const borderTask = classNames({
     "border-gray-500-my": task.isCompleted,
     "border-gray-400-my": !task.isCompleted,
   });
+
   const colorInputTask = classNames({
     "focus:ring-purple-my h-6 w-6 text-purple-my bg-gray-600-my hover:bg-purple-dark-my border-purple-my rounded-full border-2":
       task.isCompleted,
     "focus:ring-blue-my h-6 w-6 text-blue-my bg-gray-600-my hover:bg-blue-dark-my border-blue-my rounded-full border-2":
       !task.isCompleted,
   });
+
   const lineThrough = classNames({
     "text-gray-300-my  line-through": task.isCompleted,
     "text-gray-200-my": !task.isCompleted,
@@ -35,13 +36,16 @@ export default function Tasks({
   function onDeleteTask(id: string) {
     handleDeletetask(id);
   }
+
   function onUpdateTask(id: string, isCompleted: boolean) {
     handleUpdateTask(id, isCompleted);
   }
-  function OnChange() {
+
+  function OnChangeInput() {
     setIsCompleted(!isCompleted);
     onUpdateTask(task.id, isCompleted);
   }
+
   return (
     <>
       <div
@@ -55,7 +59,7 @@ export default function Tasks({
             type="checkbox"
             className={colorInputTask}
             checked={isCompleted}
-            onChange={OnChange}
+            onChange={OnChangeInput}
           />
           <p className={`font-normal text-justify text-sm ${lineThrough}`}>
             {task.name}

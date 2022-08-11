@@ -1,4 +1,4 @@
-import ClipboardIcon from "./ClipboardIcon";
+import ClipboardIcon from "./Icons/ClipboardIcon";
 
 export default function TasksEmpty() {
   return (

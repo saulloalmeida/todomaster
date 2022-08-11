@@ -1,19 +1,23 @@
-import { PlusCircle } from "phosphor-react";
-import { ChangeEvent, FormEvent, FormEventHandler, InputHTMLAttributes, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-interface FormProps{
-  handleNewTask: (data:string) => void;
+import { PlusCircle } from "phosphor-react";
+
+interface FormProps {
+  handleNewTask: (data: string) => void;
 }
 
-export default function Form({handleNewTask}:FormProps) {
-  const [formData, setFormData] = useState('')
-  function onSubmitForm(){
-    handleNewTask(formData)
-    setFormData('')
+export default function Form({ handleNewTask }: FormProps) {
+  const [formData, setFormData] = useState("");
+
+  function onSubmitForm() {
+    handleNewTask(formData);
+    setFormData("");
   }
-  function changeFormData(event: ChangeEvent<HTMLInputElement>){
-    setFormData(event.target.value)
+
+  function changeFormData(event: ChangeEvent<HTMLInputElement>) {
+    setFormData(event.target.value);
   }
+
   return (
     <div className="w-[736px] h-14 flex justify-center items-center gap-2 absolute">
       <input
