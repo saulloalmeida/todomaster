@@ -1,3 +1,4 @@
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
@@ -11,6 +12,7 @@ import { Task } from "./interfaces/TaskInterface";
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksRef] = useAutoAnimate<HTMLDivElement>();
 
   function handleNewTask(name: string) {
     const newTask = { id: uuidv4(), name: name, isCompleted: false };
@@ -42,7 +44,7 @@ export default function App() {
       <div className="flex items-center justify-center">
         <Form handleNewTask={handleNewTask} />
       </div>
-      <div className="pt-5 m-20 flex flex-col gap-3 items-center justify-center">
+      <div ref={tasksRef} className="pt-5 m-20 flex flex-col gap-3 items-center justify-center">
         <TasksInfo tasks={tasks} />
         {tasks.length <= 0 && <TasksEmpty />}
         {tasks.map((task) => (

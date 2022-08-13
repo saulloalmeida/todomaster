@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { Trash } from "phosphor-react";
 import { useState } from "react";
 import { Task } from "../interfaces/TaskInterface";
-
 interface TasksProps {
   task: Task;
   handleDeletetask: (id: string) => void;
@@ -15,7 +14,6 @@ export default function Tasks({
   handleUpdateTask,
 }: TasksProps) {
   const [isCompleted, setIsCompleted] = useState<boolean>(task.isCompleted);
-
   const borderTask = classNames({
     "border-gray-500-my": task.isCompleted,
     "border-gray-400-my": !task.isCompleted,
